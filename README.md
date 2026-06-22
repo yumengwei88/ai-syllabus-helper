@@ -31,7 +31,7 @@ Backend:
 
 ### Upload or Paste Syllabus
 
-![Input screen](screenshots/intput-screen.png)
+![Input screen](screenshots/input-screen.png)
 
 ### AI Summary Output
 

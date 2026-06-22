@@ -97,8 +97,9 @@ http://localhost:8000/
 
 ## Future Improvements
 
+- Add option to download syllabus summaries
+- Add rate limiting for public demo
 - Add drag-and-drop file upload
 - Add syllabus question-answering
 - Add Google Calendar export for deadlines
 - Support scanned PDFs with OCR
-- Deploy the frontend and backend online

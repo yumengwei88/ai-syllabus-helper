@@ -27,6 +27,28 @@ Backend:
 - pypdf
 - OpenAI API
 
+## Screenshots
+
+### Upload or Paste Syllabus
+
+![Input screen](screenshots/input-screen.png)
+
+### AI Summary Output
+
+![Output screen](screenshots/output-screen.png)
+
+## How It Works
+
+1. The user uploads a syllabus file or pastes syllabus text.
+2. The React frontend sends the input to the FastAPI backend.
+3. If the user uploads a PDF, the backend extracts embedded text using pypdf.
+4. The backend sends the syllabus text to the OpenAI API.
+5. The AI returns structured syllabus information.
+6. FastAPI validates the response and sends JSON back to React.
+7. React displays the results in organized summary cards.
+
+## Running Locally
+
 ### Backend
 
 ```bash

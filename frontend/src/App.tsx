@@ -82,7 +82,7 @@ async function handleAnalyze() {
        <h1>AI Syllabus Helper</h1>
 
        <p className="subtitle">
-         Quickly summarize a syllabus by file upload or pasting text!
+         Quickly summarize a syllabus by file upload or pasting text :D
        </p>
       </section>
      <section className="card input-card">

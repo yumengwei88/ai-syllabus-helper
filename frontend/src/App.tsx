@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 type SyllabusResult = {
   courseName: string;
@@ -34,7 +36,7 @@ async function handleAnalyze() {
     let response: Response;
 
     if (inputMode === "text") {
-      response = await fetch("http://localhost:8000/analyze", {
+      response = await fetch(`${API_BASE_URL}/analyze`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +53,7 @@ async function handleAnalyze() {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      response = await fetch("http://localhost:8000/analyze-file", {
+      response = await fetch(`${API_BASE_URL}/analyze-file`, {
         method: "POST",
         body: formData,
       });

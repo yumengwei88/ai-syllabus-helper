@@ -1,3 +1,32 @@
+# AI Syllabus Helper
+
+AI Syllabus Helper is a full-stack web app that helps students quickly understand a course syllabus. Users can either upload a PDF/TXT file or paste text directly.
+
+## Features
+
+- Upload a PDF, TXT, or MD syllabus file
+- Paste syllabus text manually
+- Extract course name, instructor, email, office hours, grading breakdown, important dates, policies, and required materials
+- Generate a simple AI-powered summary
+- Display warnings for important rules like strict attendance or late penalties
+- Loading and error states
+- Secure API key handling with environment variables
+
+## Tech Stack
+
+Frontend:
+- React
+- TypeScript
+- Vite
+- CSS
+
+Backend:
+- Python
+- FastAPI
+- Pydantic
+- pypdf
+- OpenAI API
+
 ### Backend
 
 ```bash

@@ -12,6 +12,10 @@ AI Syllabus Helper is a full-stack web app that helps students quickly understan
 - Loading and error states
 - Secure API key handling with environment variables
 
+## Live Demo
+
+[Try AI Syllabus Helper]https://ai-syllabus-helper-git-main-yumengwei89.vercel.app/
+
 ## Tech Stack
 
 Frontend:

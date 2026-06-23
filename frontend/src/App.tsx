@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -26,9 +26,30 @@ function App() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+  if (!isLoading) {
+    setProgress(0);
+    return;
+  }
+
+  const interval = setInterval(() => {
+    setProgress((currentProgress) => {
+      if (currentProgress >= 90) {
+        return currentProgress;
+      }
+
+      return currentProgress + 10;
+    });
+  }, 500);
+
+  return () => clearInterval(interval);
+}, [isLoading]);
 
 async function handleAnalyze() {
   setIsLoading(true);
+  setProgress(5);
   setErrorMessage("");
   setResult(null);
 
@@ -64,7 +85,7 @@ async function handleAnalyze() {
     if (!response.ok) {
       throw new Error(data.detail || "The syllabus could not be analyzed.");
     }
-
+    setProgress(100);
     setResult(data as SyllabusResult);
   } catch (error) {
     const message =
@@ -162,7 +183,20 @@ async function handleAnalyze() {
   >
     {isLoading ? "Analyzing..." : "Analyze Syllabus"}
   </button>
-</section>
+  </section>
+
+  {isLoading && (
+  <div className="progress-section">
+    <p className="progress-text">Analyzing syllabus, please be patient✨✨✨</p>
+
+    <div className="progress-bar">
+      <div
+        className="progress-fill"
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  </div>
+)}
 
       {result && (
         <section className="results">

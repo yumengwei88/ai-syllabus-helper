@@ -19,6 +19,55 @@ type SyllabusResult = {
 
 type InputMode = "text" | "file";
 
+function formatList(items: string[]) {
+  if (items.length === 0) {
+    return "Not found";
+  }
+
+  return items.map((item) => `- ${item}`).join("\n");
+}
+
+function makeFileName(courseName: string) {
+  const cleanedName = courseName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+  return cleanedName || "syllabhus-summary";
+}
+
+function buildDownloadText(result: SyllabusResult) {
+  return `AI Syllabus Helper Summary
+
+ Course: ${result.courseName}
+
+ Instructor: ${result.instructor}
+ Email: ${result.email}
+ Office Hours: ${result.officeHours}
+
+ Quick Summary:
+ ${result.summary}
+
+ Important Dates:
+ ${formatList(result.importantDates)}
+
+ Grading Breakdown:
+ ${formatList(result.gradingBreakdown)}
+
+ Required Materials:
+ ${formatList(result.requiredMaterials)}
+
+ Late Policy:
+ ${result.latePolicy}
+
+ Attendance Policy:
+ ${result.attendancePolicy}
+
+ Warnings:
+ ${formatList(result.warnings)}
+ `;
+}
+
 function App() {
   const [syllabusText, setSyllabusText] = useState("");
   const [result, setResult] = useState<SyllabusResult | null>(null);
@@ -98,6 +147,29 @@ async function handleAnalyze() {
   } finally {
     setIsLoading(false);
   }
+}
+
+function handleDownloadSummary() {
+  if (!result) {
+    return;
+  }
+
+  const downloadText = buildDownloadText(result);
+
+  const blob = new Blob([downloadText], {
+    type: "text/plain;charset=utf-8",
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${makeFileName(result.courseName)}-summary.txt`;
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
   return (
     <main className="page">
@@ -201,7 +273,18 @@ async function handleAnalyze() {
       {result && (
         <section className="results">
           <div className="card">
+            <div className="title-container">
             <h2>{result.courseName}</h2>
+
+            <button
+              type="button"
+              className="download-button"
+              onClick={handleDownloadSummary}
+            >
+              Download Summary
+            </button>
+            </div>
+
             <p>
               <strong>Instructor:</strong> {result.instructor}
             </p>

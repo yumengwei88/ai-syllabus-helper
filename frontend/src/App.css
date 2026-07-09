@@ -122,6 +122,19 @@ li {
   margin-bottom: 8px;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.title-container .download-button {
+  width: fit-content;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 750px) {
   .grid {
     grid-template-columns: 1fr;

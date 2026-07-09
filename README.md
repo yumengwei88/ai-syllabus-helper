@@ -11,6 +11,7 @@ AI Syllabus Helper is a full-stack web app that helps students quickly understan
 - Display warnings for important rules like strict attendance or late penalties
 - Loading and error states
 - Secure API key handling with environment variables
+- Option to download .txt syllabus summary
 
 ## Live Demo
 
@@ -97,7 +98,7 @@ http://localhost:8000/
 
 ## Future Improvements
 
-- Add option to download syllabus summaries
+- Add pdf summary download
 - Add rate limiting for public demo
 - Add drag-and-drop file upload
 - Add syllabus question-answering
